@@ -157,50 +157,6 @@ function event_calendar_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-event_calendar_listing-field_npf_event_title'.
-  $field_instances['node-event_calendar_listing-field_npf_event_title'] = array(
-    'bundle' => 'event_calendar_listing',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'fences_wrapper' => 'div',
-    'field_name' => 'field_npf_event_title',
-    'label' => 'Title',
-    'required' => 1,
-    'settings' => array(
-      'membership_entity_join_form' => FALSE,
-      'membership_entity_term_renew_form' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance:
   // 'node-event_calendar_listing-field_npf_event_type'.
   $field_instances['node-event_calendar_listing-field_npf_event_type'] = array(
     'bundle' => 'event_calendar_listing',
@@ -448,7 +404,6 @@ function event_calendar_field_default_field_instances() {
   t('Event Description');
   t('Event Type');
   t('Local?');
-  t('Title');
   t('URL');
   t('Venue Address');
   t('Venue Map');
