@@ -73,7 +73,14 @@ function event_calendar_field_default_field_instances() {
   // 'node-event_calendar_listing-field_npf_event_description'.
   $field_instances['node-event_calendar_listing-field_npf_event_description'] = array(
     'bundle' => 'event_calendar_listing',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'summary' => '',
+        'value' => '<p>If you are pasting content to this field, first be sure&nbsp;to switch to plain text editor below.</p>
+',
+        'format' => 'full_html',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -202,7 +209,7 @@ function event_calendar_field_default_field_instances() {
     'bundle' => 'event_calendar_listing',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The link should be the same as the link address in the browser address bar. In other words, don\'t forget "http://".',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -219,7 +226,7 @@ function event_calendar_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'fences_wrapper' => 'div',
+    'fences_wrapper' => 'no_wrapper',
     'field_name' => 'field_npf_event_url',
     'label' => 'URL',
     'required' => 1,
@@ -404,6 +411,7 @@ function event_calendar_field_default_field_instances() {
   t('Event Description');
   t('Event Type');
   t('Local?');
+  t('The link should be the same as the link address in the browser address bar. In other words, don\'t forget "http://".');
   t('URL');
   t('Venue Address');
   t('Venue Map');
