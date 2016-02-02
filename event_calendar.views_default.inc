@@ -29,8 +29,10 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'All Events';
+  $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '2';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -126,26 +128,24 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_npf_event_description']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['field_npf_event_description']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_npf_event_description']['field_api_classes'] = TRUE;
-  /* Field: Content: Venue Map */
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['id'] = 'field_npf_event_venue_map';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['table'] = 'field_data_field_npf_event_venue_map';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['field'] = 'field_npf_event_venue_map';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['label'] = '';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['element_wrapper_type'] = '0';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['click_sort_column'] = 'lat';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['type'] = 'geolocation_googlemaps_static';
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['settings'] = array(
+  /* Field: Content: Event Location Map */
+  $handler->display->display_options['fields']['field_event_location_map']['id'] = 'field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map']['table'] = 'field_data_field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map']['field'] = 'field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map']['label'] = '';
+  $handler->display->display_options['fields']['field_event_location_map']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location_map']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location_map']['click_sort_column'] = 'geom';
+  $handler->display->display_options['fields']['field_event_location_map']['type'] = 'geolocation_googlemaps_static';
+  $handler->display->display_options['fields']['field_event_location_map']['settings'] = array(
     'map_width' => '250px',
     'map_height' => '175px',
     'marker_icon' => '',
     'map_imageformat' => 'png8',
-    'map_link' => 1,
+    'map_link' => 0,
     'map_maptype' => 'roadmap',
     'map_zoomlevel' => '7',
   );
-  $handler->display->display_options['fields']['field_npf_event_venue_map']['field_api_classes'] = TRUE;
   /* Field: Content: URL */
   $handler->display->display_options['fields']['field_npf_event_url']['id'] = 'field_npf_event_url';
   $handler->display->display_options['fields']['field_npf_event_url']['table'] = 'field_data_field_npf_event_url';
@@ -153,6 +153,22 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_npf_event_url']['label'] = '';
   $handler->display->display_options['fields']['field_npf_event_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_npf_event_url']['element_default_classes'] = FALSE;
+  /* Field: Content: Zip filter field (field_zip_filter_field) - proximity */
+  $handler->display->display_options['fields']['field_geofield_distance']['id'] = 'field_geofield_distance';
+  $handler->display->display_options['fields']['field_geofield_distance']['table'] = 'field_data_field_zip_filter_field';
+  $handler->display->display_options['fields']['field_geofield_distance']['field'] = 'field_geofield_distance';
+  $handler->display->display_options['fields']['field_geofield_distance']['label'] = '';
+  $handler->display->display_options['fields']['field_geofield_distance']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_geofield_distance']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_geofield_distance']['precision'] = '0';
+  $handler->display->display_options['fields']['field_geofield_distance']['source'] = 'geocoder';
+  $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_manual'] = array(
+    'lat' => '',
+    'lon' => '',
+  );
+  $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_entity_url_field'] = 'field_zip_filter_field';
+  $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_current_user_field'] = 'field_zip_filter_field';
+  $handler->display->display_options['fields']['field_geofield_distance']['radius_of_earth'] = '3959';
   /* Sort criterion: Content: Date and Time -  start date (field_npf_event_date) */
   $handler->display->display_options['sorts']['field_npf_event_date_value']['id'] = 'field_npf_event_date_value';
   $handler->display->display_options['sorts']['field_npf_event_date_value']['table'] = 'field_data_field_npf_event_date';
@@ -171,6 +187,42 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event_calendar_listing' => 'event_calendar_listing',
   );
+  /* Filter criterion: Content: Zip filter field (field_zip_filter_field) - proximity */
+  $handler->display->display_options['filters']['field_geofield_distance']['id'] = 'field_geofield_distance';
+  $handler->display->display_options['filters']['field_geofield_distance']['table'] = 'field_data_field_zip_filter_field';
+  $handler->display->display_options['filters']['field_geofield_distance']['field'] = 'field_geofield_distance';
+  $handler->display->display_options['filters']['field_geofield_distance']['operator'] = '<';
+  $handler->display->display_options['filters']['field_geofield_distance']['value'] = array(
+    'distance' => '50',
+    'distance2' => 200,
+    'unit' => '3959',
+    'origin' => '',
+  );
+  $handler->display->display_options['filters']['field_geofield_distance']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_geofield_distance']['expose']['operator_id'] = 'field_geofield_distance_op';
+  $handler->display->display_options['filters']['field_geofield_distance']['expose']['label'] = 'Zip filter field (field_zip_filter_field) - proximity';
+  $handler->display->display_options['filters']['field_geofield_distance']['expose']['operator'] = 'field_geofield_distance_op';
+  $handler->display->display_options['filters']['field_geofield_distance']['expose']['identifier'] = 'field_geofield_distance';
+  $handler->display->display_options['filters']['field_geofield_distance']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+    13 => 0,
+    15 => 0,
+    17 => 0,
+  );
+  $handler->display->display_options['filters']['field_geofield_distance']['source'] = 'geocoder';
+  $handler->display->display_options['filters']['field_geofield_distance']['geofield_proximity_entity_url_field'] = 'field_zip_filter_field';
+  $handler->display->display_options['filters']['field_geofield_distance']['geofield_proximity_current_user_field'] = 'field_zip_filter_field';
   $export['events_calendar'] = $view;
 
   return $export;

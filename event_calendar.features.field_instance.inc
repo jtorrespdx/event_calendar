@@ -11,6 +11,47 @@ function event_calendar_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'node-event_calendar_listing-field_event_location_map'.
+  $field_instances['node-event_calendar_listing-field_event_location_map'] = array(
+    'bundle' => 'event_calendar_listing',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_location_map',
+    'label' => 'Event Location Map',
+    'required' => FALSE,
+    'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'geolocation_googlemaps',
+      'settings' => array(),
+      'type' => 'geolocation_googlemap',
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance:
   // 'node-event_calendar_listing-field_npf_event_date'.
   $field_instances['node-event_calendar_listing-field_npf_event_date'] = array(
     'bundle' => 'event_calendar_listing',
@@ -65,7 +106,7 @@ function event_calendar_field_default_field_instances() {
         'year_range' => '-0:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -159,7 +200,7 @@ function event_calendar_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -200,7 +241,7 @@ function event_calendar_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -243,7 +284,7 @@ function event_calendar_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -304,60 +345,7 @@ function event_calendar_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 11,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-event_calendar_listing-field_npf_event_venue_map'.
-  $field_instances['node-event_calendar_listing-field_npf_event_venue_map'] = array(
-    'bundle' => 'event_calendar_listing',
-    'default_value' => array(
-      0 => array(
-        'address' => array(
-          'field' => 'Portland, OR',
-        ),
-        'lat' => 45.5230622,
-        'lng' => '-122.67648159999999',
-        'field_type' => 'geolocation_latlng',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'geolocation',
-        'settings' => array(),
-        'type' => 'geolocation_text',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'fences_wrapper' => 'div',
-    'field_name' => 'field_npf_event_venue_map',
-    'label' => 'Venue Map',
-    'required' => 1,
-    'settings' => array(
-      'membership_entity_join_form' => FALSE,
-      'membership_entity_term_renew_form' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'geolocation_googlemaps',
-      'settings' => array(
-        'marker_draggable' => 1,
-        'scrollwheel' => 0,
-      ),
-      'type' => 'geolocation_googlemap',
-      'weight' => 12,
+      'weight' => 10,
     ),
   );
 
@@ -401,7 +389,70 @@ function event_calendar_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'node-event_calendar_listing-field_zip_filter_field'.
+  $field_instances['node-event_calendar_listing-field_zip_filter_field'] = array(
+    'bundle' => 'event_calendar_listing',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_zip_filter_field',
+    'label' => 'Zip filter field',
+    'required' => 0,
+    'settings' => array(
+      'membership_entity_join_form' => FALSE,
+      'membership_entity_term_renew_form' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'geocoder',
+      'settings' => array(
+        'delta_handling' => 'default',
+        'geocoder_field' => 'field_npf_event_venue_address',
+        'geocoder_handler' => 'google',
+        'handler_settings' => array(
+          'google' => array(
+            'all_results' => 0,
+            'biasing' => array(
+              'bounds' => '',
+              'components' => '',
+              'region' => '',
+            ),
+            'geometry_type' => 'point',
+            'reject_results' => array(
+              'APPROXIMATE' => 0,
+              'GEOMETRIC_CENTER' => 0,
+              'RANGE_INTERPOLATED' => 0,
+              'ROOFTOP' => 0,
+            ),
+          ),
+        ),
+      ),
+      'type' => 'geocoder',
+      'weight' => 14,
     ),
   );
 
@@ -409,13 +460,14 @@ function event_calendar_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Date and Time');
   t('Event Description');
+  t('Event Location Map');
   t('Event Type');
   t('Local?');
   t('The link should be the same as the link address in the browser address bar. In other words, don\'t forget "http://".');
   t('URL');
   t('Venue Address');
-  t('Venue Map');
   t('Venue Name');
+  t('Zip filter field');
 
   return $field_instances;
 }
