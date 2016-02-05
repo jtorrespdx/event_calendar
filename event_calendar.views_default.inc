@@ -173,6 +173,11 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['sorts']['field_npf_event_date_value']['id'] = 'field_npf_event_date_value';
   $handler->display->display_options['sorts']['field_npf_event_date_value']['table'] = 'field_data_field_npf_event_date';
   $handler->display->display_options['sorts']['field_npf_event_date_value']['field'] = 'field_npf_event_date_value';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -180,13 +185,28 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'event_calendar_listing' => 'event_calendar_listing',
+  /* Filter criterion: Content: Local? (field_npf_event_local) */
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['id'] = 'field_npf_event_local_value_1';
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['table'] = 'field_data_field_npf_event_local';
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['field'] = 'field_npf_event_local_value';
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['value'] = array(
+    'national event' => 'national event',
   );
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Filter criterion: Content: Local? (field_npf_event_local) */
+  $handler->display->display_options['filters']['field_npf_event_local_value']['id'] = 'field_npf_event_local_value';
+  $handler->display->display_options['filters']['field_npf_event_local_value']['table'] = 'field_data_field_npf_event_local';
+  $handler->display->display_options['filters']['field_npf_event_local_value']['field'] = 'field_npf_event_local_value';
+  $handler->display->display_options['filters']['field_npf_event_local_value']['value'] = array(
+    'local event' => 'local event',
+  );
+  $handler->display->display_options['filters']['field_npf_event_local_value']['group'] = 2;
   /* Filter criterion: Content: Zip filter field (field_zip_filter_field) - proximity */
   $handler->display->display_options['filters']['field_geofield_distance']['id'] = 'field_geofield_distance';
   $handler->display->display_options['filters']['field_geofield_distance']['table'] = 'field_data_field_zip_filter_field';
@@ -198,9 +218,9 @@ function event_calendar_views_default_views() {
     'unit' => '3959',
     'origin' => '',
   );
+  $handler->display->display_options['filters']['field_geofield_distance']['group'] = 2;
   $handler->display->display_options['filters']['field_geofield_distance']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['operator_id'] = 'field_geofield_distance_op';
-  $handler->display->display_options['filters']['field_geofield_distance']['expose']['label'] = 'Zip filter field (field_zip_filter_field) - proximity';
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['operator'] = 'field_geofield_distance_op';
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['identifier'] = 'field_geofield_distance';
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['remember_roles'] = array(
