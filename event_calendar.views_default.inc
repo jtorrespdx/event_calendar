@@ -29,6 +29,7 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filter';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'All Events';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
@@ -142,7 +143,7 @@ function event_calendar_views_default_views() {
     'map_height' => '175px',
     'marker_icon' => '',
     'map_imageformat' => 'png8',
-    'map_link' => 0,
+    'map_link' => 1,
     'map_maptype' => 'roadmap',
     'map_zoomlevel' => '7',
   );
@@ -169,10 +170,29 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_entity_url_field'] = 'field_zip_filter_field';
   $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_current_user_field'] = 'field_zip_filter_field';
   $handler->display->display_options['fields']['field_geofield_distance']['radius_of_earth'] = '3959';
+  /* Field: Content: Event Location Map */
+  $handler->display->display_options['fields']['field_event_location_map_1']['id'] = 'field_event_location_map_1';
+  $handler->display->display_options['fields']['field_event_location_map_1']['table'] = 'field_data_field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map_1']['field'] = 'field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map_1']['label'] = '';
+  $handler->display->display_options['fields']['field_event_location_map_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location_map_1']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location_map_1']['click_sort_column'] = 'geom';
+  $handler->display->display_options['fields']['field_event_location_map_1']['type'] = 'geofield_latlon';
+  $handler->display->display_options['fields']['field_event_location_map_1']['settings'] = array(
+    'data' => 'full',
+    'format' => 'decimal_degrees',
+    'labels' => 0,
+  );
   /* Sort criterion: Content: Date and Time -  start date (field_npf_event_date) */
   $handler->display->display_options['sorts']['field_npf_event_date_value']['id'] = 'field_npf_event_date_value';
   $handler->display->display_options['sorts']['field_npf_event_date_value']['table'] = 'field_data_field_npf_event_date';
   $handler->display->display_options['sorts']['field_npf_event_date_value']['field'] = 'field_npf_event_date_value';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -180,13 +200,28 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'event_calendar_listing' => 'event_calendar_listing',
+  /* Filter criterion: Content: Local? (field_npf_event_local) */
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['id'] = 'field_npf_event_local_value_1';
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['table'] = 'field_data_field_npf_event_local';
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['field'] = 'field_npf_event_local_value';
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['value'] = array(
+    'national event' => 'national event',
   );
+  $handler->display->display_options['filters']['field_npf_event_local_value_1']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Filter criterion: Content: Local? (field_npf_event_local) */
+  $handler->display->display_options['filters']['field_npf_event_local_value']['id'] = 'field_npf_event_local_value';
+  $handler->display->display_options['filters']['field_npf_event_local_value']['table'] = 'field_data_field_npf_event_local';
+  $handler->display->display_options['filters']['field_npf_event_local_value']['field'] = 'field_npf_event_local_value';
+  $handler->display->display_options['filters']['field_npf_event_local_value']['value'] = array(
+    'local event' => 'local event',
+  );
+  $handler->display->display_options['filters']['field_npf_event_local_value']['group'] = 2;
   /* Filter criterion: Content: Zip filter field (field_zip_filter_field) - proximity */
   $handler->display->display_options['filters']['field_geofield_distance']['id'] = 'field_geofield_distance';
   $handler->display->display_options['filters']['field_geofield_distance']['table'] = 'field_data_field_zip_filter_field';
@@ -198,9 +233,9 @@ function event_calendar_views_default_views() {
     'unit' => '3959',
     'origin' => '',
   );
+  $handler->display->display_options['filters']['field_geofield_distance']['group'] = 2;
   $handler->display->display_options['filters']['field_geofield_distance']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['operator_id'] = 'field_geofield_distance_op';
-  $handler->display->display_options['filters']['field_geofield_distance']['expose']['label'] = 'Zip filter field (field_zip_filter_field) - proximity';
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['operator'] = 'field_geofield_distance_op';
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['identifier'] = 'field_geofield_distance';
   $handler->display->display_options['filters']['field_geofield_distance']['expose']['remember_roles'] = array(
