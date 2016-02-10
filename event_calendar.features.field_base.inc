@@ -54,6 +54,7 @@ function event_calendar_field_default_field_bases() {
     'module' => 'geofield',
     'settings' => array(
       'backend' => 'default',
+      'profile2_private' => FALSE,
       'srid' => 4326,
     ),
     'translatable' => 0,

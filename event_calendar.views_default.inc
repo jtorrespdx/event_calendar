@@ -84,7 +84,7 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_npf_event_date']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['field_npf_event_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_npf_event_date']['settings'] = array(
-    'format_type' => 'medium',
+    'format_type' => 'long',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -208,6 +208,13 @@ function event_calendar_views_default_views() {
     'national event' => 'national event',
   );
   $handler->display->display_options['filters']['field_npf_event_local_value_1']['group'] = 1;
+  /* Filter criterion: Content: Date and Time - end date (field_npf_event_date:value2) */
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['id'] = 'field_npf_event_date_value2';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['table'] = 'field_data_field_npf_event_date';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['field'] = 'field_npf_event_date_value2';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['operator'] = '>';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['group'] = 1;
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['default_date'] = 'now';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
   $handler->display->display_options['filters']['status_1']['table'] = 'node';
@@ -258,6 +265,13 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_geofield_distance']['source'] = 'geocoder';
   $handler->display->display_options['filters']['field_geofield_distance']['geofield_proximity_entity_url_field'] = 'field_zip_filter_field';
   $handler->display->display_options['filters']['field_geofield_distance']['geofield_proximity_current_user_field'] = 'field_zip_filter_field';
+  /* Filter criterion: Content: Date and Time - end date (field_npf_event_date:value2) */
+  $handler->display->display_options['filters']['field_npf_event_date_value2_1']['id'] = 'field_npf_event_date_value2_1';
+  $handler->display->display_options['filters']['field_npf_event_date_value2_1']['table'] = 'field_data_field_npf_event_date';
+  $handler->display->display_options['filters']['field_npf_event_date_value2_1']['field'] = 'field_npf_event_date_value2';
+  $handler->display->display_options['filters']['field_npf_event_date_value2_1']['operator'] = '>';
+  $handler->display->display_options['filters']['field_npf_event_date_value2_1']['group'] = 2;
+  $handler->display->display_options['filters']['field_npf_event_date_value2_1']['default_date'] = 'now';
   $export['events_calendar'] = $view;
 
   return $export;
