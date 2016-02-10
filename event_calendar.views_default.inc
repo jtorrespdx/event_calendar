@@ -29,6 +29,7 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filter';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'All Events';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
@@ -142,7 +143,7 @@ function event_calendar_views_default_views() {
     'map_height' => '175px',
     'marker_icon' => '',
     'map_imageformat' => 'png8',
-    'map_link' => 0,
+    'map_link' => 1,
     'map_maptype' => 'roadmap',
     'map_zoomlevel' => '7',
   );
@@ -169,6 +170,20 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_entity_url_field'] = 'field_zip_filter_field';
   $handler->display->display_options['fields']['field_geofield_distance']['geofield_proximity_current_user_field'] = 'field_zip_filter_field';
   $handler->display->display_options['fields']['field_geofield_distance']['radius_of_earth'] = '3959';
+  /* Field: Content: Event Location Map */
+  $handler->display->display_options['fields']['field_event_location_map_1']['id'] = 'field_event_location_map_1';
+  $handler->display->display_options['fields']['field_event_location_map_1']['table'] = 'field_data_field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map_1']['field'] = 'field_event_location_map';
+  $handler->display->display_options['fields']['field_event_location_map_1']['label'] = '';
+  $handler->display->display_options['fields']['field_event_location_map_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location_map_1']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_event_location_map_1']['click_sort_column'] = 'geom';
+  $handler->display->display_options['fields']['field_event_location_map_1']['type'] = 'geofield_latlon';
+  $handler->display->display_options['fields']['field_event_location_map_1']['settings'] = array(
+    'data' => 'full',
+    'format' => 'decimal_degrees',
+    'labels' => 0,
+  );
   /* Sort criterion: Content: Date and Time -  start date (field_npf_event_date) */
   $handler->display->display_options['sorts']['field_npf_event_date_value']['id'] = 'field_npf_event_date_value';
   $handler->display->display_options['sorts']['field_npf_event_date_value']['table'] = 'field_data_field_npf_event_date';
