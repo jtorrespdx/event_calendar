@@ -274,5 +274,99 @@ function event_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_npf_event_date_value2_1']['default_date'] = 'now';
   $export['events_calendar'] = $view;
 
+  $view = new view();
+  $view->name = 'homepage_event_calendar';
+  $view->description = 'upcoming events feed for homepage minipanel';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'homepage-event-calendar';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['css_class'] = 'homepage-calendar-feed';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Date and Time */
+  $handler->display->display_options['fields']['field_npf_event_date']['id'] = 'field_npf_event_date';
+  $handler->display->display_options['fields']['field_npf_event_date']['table'] = 'field_data_field_npf_event_date';
+  $handler->display->display_options['fields']['field_npf_event_date']['field'] = 'field_npf_event_date';
+  $handler->display->display_options['fields']['field_npf_event_date']['label'] = '';
+  $handler->display->display_options['fields']['field_npf_event_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_npf_event_date']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_npf_event_date']['settings'] = array(
+    'format_type' => 'mo_and_date',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_remaining_days' => 0,
+  );
+  /* Field: Content: URL */
+  $handler->display->display_options['fields']['field_npf_event_url']['id'] = 'field_npf_event_url';
+  $handler->display->display_options['fields']['field_npf_event_url']['table'] = 'field_data_field_npf_event_url';
+  $handler->display->display_options['fields']['field_npf_event_url']['field'] = 'field_npf_event_url';
+  $handler->display->display_options['fields']['field_npf_event_url']['label'] = '';
+  $handler->display->display_options['fields']['field_npf_event_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_npf_event_url']['element_default_classes'] = FALSE;
+  /* Field: Content: Venue Address - Administrative area (i.e. State / Province) */
+  $handler->display->display_options['fields']['field_npf_event_venue_address_administrative_area']['id'] = 'field_npf_event_venue_address_administrative_area';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_administrative_area']['table'] = 'field_data_field_npf_event_venue_address';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_administrative_area']['field'] = 'field_npf_event_venue_address_administrative_area';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_administrative_area']['label'] = '';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_administrative_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_npf_event_venue_address_administrative_area']['element_default_classes'] = FALSE;
+  /* Field: Content: Venue Address - Locality (i.e. City) */
+  $handler->display->display_options['fields']['field_npf_event_venue_address_locality']['id'] = 'field_npf_event_venue_address_locality';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_locality']['table'] = 'field_data_field_npf_event_venue_address';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_locality']['field'] = 'field_npf_event_venue_address_locality';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_locality']['label'] = '';
+  $handler->display->display_options['fields']['field_npf_event_venue_address_locality']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_npf_event_venue_address_locality']['element_default_classes'] = FALSE;
+  /* Sort criterion: Content: Date and Time -  start date (field_npf_event_date) */
+  $handler->display->display_options['sorts']['field_npf_event_date_value']['id'] = 'field_npf_event_date_value';
+  $handler->display->display_options['sorts']['field_npf_event_date_value']['table'] = 'field_data_field_npf_event_date';
+  $handler->display->display_options['sorts']['field_npf_event_date_value']['field'] = 'field_npf_event_date_value';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event_calendar_listing' => 'event_calendar_listing',
+  );
+  /* Filter criterion: Content: Date and Time - end date (field_npf_event_date:value2) */
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['id'] = 'field_npf_event_date_value2';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['table'] = 'field_data_field_npf_event_date';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['field'] = 'field_npf_event_date_value2';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['operator'] = '>';
+  $handler->display->display_options['filters']['field_npf_event_date_value2']['default_date'] = 'now';
+  $export['homepage_event_calendar'] = $view;
+
   return $export;
 }
