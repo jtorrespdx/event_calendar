@@ -38,7 +38,7 @@ function event_calendar_field_default_field_instances() {
     'fences_wrapper' => 'div',
     'field_name' => 'field_event_location_map',
     'label' => 'Event Location Map',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'membership_entity_join_form' => FALSE,
       'membership_entity_term_renew_form' => FALSE,
@@ -121,10 +121,9 @@ function event_calendar_field_default_field_instances() {
     'bundle' => 'event_calendar_listing',
     'default_value' => array(
       0 => array(
-        'summary' => '',
-        'value' => '<p>If you are pasting content to this field, first be sure&nbsp;to switch to plain text editor below.</p>
+        'value' => '
 ',
-        'format' => 'full_html',
+        'summary' => '',
       ),
     ),
     'deleted' => 0,
@@ -153,7 +152,7 @@ function event_calendar_field_default_field_instances() {
       'display_summary' => 0,
       'membership_entity_join_form' => FALSE,
       'membership_entity_term_renew_form' => FALSE,
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -324,7 +323,7 @@ function event_calendar_field_default_field_instances() {
     'fences_wrapper' => 'div',
     'field_name' => 'field_npf_event_venue_address',
     'label' => 'Venue Address',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'membership_entity_join_form' => FALSE,
       'membership_entity_term_renew_form' => FALSE,
@@ -341,12 +340,12 @@ function event_calendar_field_default_field_instances() {
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
+          'address-optional' => 'address-optional',
           'address-hide-postal-code' => 0,
           'address-hide-street' => 0,
           'organisation' => 0,
           'name-full' => 0,
           'name-oneline' => 0,
-          'address-optional' => 0,
         ),
       ),
       'type' => 'addressfield_standard',
@@ -360,7 +359,7 @@ function event_calendar_field_default_field_instances() {
     'bundle' => 'event_calendar_listing',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => '"Online Event" or something similar for online events, webcasts, etc.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -463,6 +462,7 @@ function event_calendar_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('"Online Event" or something similar for online events, webcasts, etc.');
   t('Date and Time');
   t('Event Description');
   t('Event Location Map');
